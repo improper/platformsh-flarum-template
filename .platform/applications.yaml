@@ -1,0 +1,46 @@
+- name: flarum
+  source:
+    root: /
+  type: php:8.1
+  disk: 3000
+  build:
+    flavor: composer
+  dependencies:
+    php:
+      composer/composer: '^2'
+  relationships:
+    database: "db:mysql"
+  web:
+    locations:
+      "/":
+        root: "public"
+        index:
+          - index.php
+        allow: true
+        passthru: "/index.php"
+      "/assets":
+        root: "public/assets"
+        allow: true
+        scripts: false
+  mounts:
+    "storage":
+      source: local
+      source_path: "storage"
+    "public/assets":
+      source: local
+      source_path: "assets"
+  hooks:
+    build: |
+      ln -sf storage/config.php config.php # Make config.php writable
+    deploy: |
+      # Ensure Flarum has mounts initialized properly
+      mkdir -p storage/cache
+      mkdir -p storage/formatter
+      mkdir -p storage/less
+      mkdir -p storage/logs
+      mkdir -p storage/sessions
+      mkdir -p storage/tmp
+      mkdir -p storage/views
+      mkdir -p public/assets/avatars
+      php deploy.php
+      ./flarum migrate
