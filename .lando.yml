@@ -1,0 +1,4 @@
+name: flarum-template
+recipe: platformsh
+config:
+  id: jorsxdde6o7kk
