@@ -21,6 +21,7 @@
         "docs": "https://docs.flarum.org/"
     },
     "require": {
+        "cweagans/composer-patches": "^1.7",
         "flarum/core": "^1.4",
         "flarum/approval": "*",
         "flarum/bbcode": "*",
@@ -42,6 +43,16 @@
     },
     "config": {
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "cweagans/composer-patches": true
+        }
+    },
+    "extra": {
+        "patches": {
+            "flarum/core": {
+                "Add missing return types": "patches/platformsh_protect_app_directory.diff"
+            }
+        }
     }
 }

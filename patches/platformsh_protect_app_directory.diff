@@ -1,0 +1,16 @@
+Index: vendor/flarum/core/src/Install/Installation.php
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/vendor/flarum/core/src/Install/Installation.php b/vendor/flarum/core/src/Install/Installation.php
+--- a/vendor/flarum/core/src/Install/Installation.php	(revision 04289c5c4a9546c719b7e0773018b7d83cb64557)
++++ b/vendor/flarum/core/src/Install/Installation.php	(date 1658341021855)
+@@ -114,7 +114,6 @@
+                 'tokenizer',
+             ]),
+             new Prerequisite\WritablePaths([
+-                $this->paths->base,
+                 $this->getAssetPath().'/*',
+                 $this->paths->storage,
+             ])
