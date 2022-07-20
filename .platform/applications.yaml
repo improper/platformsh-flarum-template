@@ -44,3 +44,4 @@
       mkdir -p public/assets/avatars
       php deploy.php
       ./flarum migrate
+      ./flarum assets:publish
