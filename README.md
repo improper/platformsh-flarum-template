@@ -1,38 +1,51 @@
-<p align="center"><img src="https://flarum.org/assets/img/logo.png"></p>
+# Flarum for Platform.sh
 
 <p align="center">
-<a href="https://packagist.org/packages/flarum/core"><img src="https://poser.pugx.org/flarum/core/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/flarum/core"><img src="https://poser.pugx.org/flarum/core/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/flarum/core"><img src="https://poser.pugx.org/flarum/core/license.svg" alt="License"></a>
+<a href="https://console.platform.sh/projects/create-project?template=https://github.com/improper/platformsh-flarum-template/blob/main/.platformsh.template.yaml&utm_content=flarum&utm_source=github&utm_medium=button&utm_campaign=deploy_on_platform">
+    <img src="https://platform.sh/images/deploy/lg-blue.svg" alt="Deploy on Platform.sh" width="180px" />
+</a>
 </p>
 
-## About Flarum
+This template builds Flarum on Platform.sh.
 
-**[Flarum](https://flarum.org/) is a delightfully simple discussion platform for your website.** It's fast and easy to use, with all the features you need to run a successful community. It is designed to be:
+Flarum is a discussion platform. It's free and extremely extensible.
 
-* **Fast and simple.** No clutter, no bloat, no complex dependencies. Flarum is built with PHP so it’s quick and easy to deploy. The interface is powered by Mithril, a performant JavaScript framework with a tiny footprint.
+## Customizations
 
-* **Beautiful and responsive.** This is forum software for humans. Flarum is carefully designed to be consistent and intuitive across platforms, out-of-the-box.
+The project was sourced from `composer create-project flarum/flarum`. The following changes have been implemented.
 
-* **Powerful and extensible.** Customize, extend, and integrate Flarum to suit your community. Flarum’s architecture is amazingly flexible, with a powerful Extension API.
+* `.platform` directory has been added to enable cloud deployments.
+* `.platformsh.template.yaml` has been added to enable the Deploy on Platform button. This file is optional.
+* `config_base.php` and `deploy.php` have been added to enable so that this project may automatically configure environment variables.
+* `.patches/platformsh_protect_app_directory.diff` has been added to increase the security of Flarum. If removed, Flarum will complain that the root project directory is not writeable, which is only needed during installation. This ensures that your project remains secure.
+  * This patch is applied automagically by Composer using `cweagans/composer-patches`
 
-![screenshot](https://flarum.org/assets/img/home-screenshot.png)
+## Features
 
-## Installation
+* PHP 8.1
+* MariaDB 10.4
+* Automatic TLS certificates
+* Composer 2
+* Automatic Database Connection Configuration
 
-Read the **[Installation guide](https://docs.flarum.org/install)** to get started. For support, refer to the [documentation](https://docs.flarum.org/), and ask questions on the [community forum](https://discuss.flarum.org/) or [Discord chat](https://flarum.org/discord/).
+## Post-deployment
 
-## Contributing
+1. Change your admin username and password. **Login with:**
+   * **User**: admin
+   * **Password**: password
 
-Thank you for considering contributing to Flarum! Please read the **[Contributing guide](https://docs.flarum.org/contributing)** to learn how you can help.
+## Local development
 
-This repository only holds the Flarum skeleton application. Most development happens in [flarum/core](https://github.com/flarum/core).
+This template has been configured for use with [Lando](https://docs.lando.dev).  Lando is Platform.sh's recommended local development tool.  It is capable of reading your Platform.sh configuration files and standing up an environment that is _very similar_ to your Platform.sh project.  Additionally, Lando can easily pull down databases and file mounts from your Platform.sh project.
 
-## Security Vulnerabilities
+To get started using Lando with your Platform.sh project check out the [Quick Start](https://docs.platform.sh/development/local/lando.html) or the [official Lando Platform.sh documentation](https://docs.lando.dev/config/platformsh.html).
 
-If you discover a security vulnerability within Flarum, please follow our [security policy](https://github.com/flarum/core/security/policy) so we can address it promptly.
+Or, after deploying your project simply run `lando init --recipe platformsh --src cwd --platformsh-site "$projectName"`
 
-## License
+## References
 
-Flarum is open-source software licensed under the [MIT License](https://github.com/flarum/flarum/blob/master/LICENSE).
-
+* [WordPress](https://wordpress.org/)
+* [WordPress on Platform.sh](https://docs.platform.sh/frameworks/wordpress.html)
+* [PHP on Platform.sh](https://docs.platform.sh/languages/php.html)
+* [How to install Wordpress plugins and themes with Composer](https://community.platform.sh/t/how-to-install-wordpress-plugins-and-themes-with-composer/507)
+* [How to install custom/private Wordpress plugins and themes with Composer](https://community.platform.sh/t/how-to-install-custom-private-wordpress-plugins-and-themes-with-composer/622)
