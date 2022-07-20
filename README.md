@@ -40,7 +40,11 @@ This template has been configured for use with [Lando](https://docs.lando.dev). 
 
 To get started using Lando with your Platform.sh project check out the [Quick Start](https://docs.platform.sh/development/local/lando.html) or the [official Lando Platform.sh documentation](https://docs.lando.dev/config/platformsh.html).
 
-Or, after deploying your project simply run `lando init --recipe platformsh --src cwd --platformsh-site "$projectName"`
+Or, after deploying your project simply run:
+
+* `lando init --recipe platformsh --src cwd --platformsh-site "$projectName"`
+* `lando start`
+* `lando ssh -c 'php deploy.php'`
 
 ## References
 
