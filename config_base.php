@@ -3,7 +3,7 @@
 $routes = json_decode(base64_decode($_ENV['PLATFORM_ROUTES']), true);
 $database = json_decode(base64_decode($_ENV['PLATFORM_RELATIONSHIPS']), true)['database'][0];
 $flarumRoute = array_filter($routes, function ($route) {
-    return $route['id'] === 'flarum-main';
+    return $route['id'] === 'flarum-main-url';
 });
 $route = array_key_first($flarumRoute);
 
