@@ -37,7 +37,8 @@
         "flarum/sticky": "*",
         "flarum/subscriptions": "*",
         "flarum/suspend": "*",
-        "flarum/tags": "*"
+        "flarum/tags": "*",
+      "ext-json": "*"
     },
     "config": {
         "preferred-install": "dist",
